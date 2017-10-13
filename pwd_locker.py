@@ -1,4 +1,4 @@
-class User:
+class Users:
 
     user_list = []
 
@@ -15,4 +15,13 @@ class User:
         '''
         Save User object in user_list
         '''
-        User.user_list.append(self)
+        Users.user_list.append(self)
+
+    @classmethod
+    def find_user_by_id(cls, user_id):
+        for user in cls.user_list:
+            if user.user_id == user_id:
+                return user
+
+    # @classmethod
+    # def

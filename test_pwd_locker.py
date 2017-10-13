@@ -1,11 +1,11 @@
 import unittest
 
-from pwd_locker import User
+from pwd_locker import Users
 
 
 class TestPwdLocker(unittest.TestCase):
     def setUp(self):
-        self.new_user = User(1, "Virginia", "nish", 12345)
+        self.new_user = Users(1, "Virginia", "nish", 12345)
 
     def test_init(self):
         '''
@@ -21,22 +21,32 @@ class TestPwdLocker(unittest.TestCase):
         test if User object has been saved in user_list
         '''
         self.new_user.save_user()
-        self.assertEqual(len(User.user_list), 1)
+        self.assertEqual(len(Users.user_list), 1)
 
     def tearDown(self):
         '''
         tearDown cleans up after each test case runs
         '''
-        User.user_list = []
+        Users.user_list = []
 
     def test_save_multiple_users(self):
         '''
         test if multiple user objects have been saved in user_list
         '''
         self.new_user.save_user()
-        test_user = User(2, "Mbugua", "gitu", 467587)
+        test_user = Users(2, "Mbugua", "gitu", 467587)
         test_user.save_user()
-        self.assertEqual(len(User.user_list), 2)
+        self.assertEqual(len(Users.user_list), 2)
+
+    def test_find_user_by_id(self):
+        '''
+        test to ensure we can find a user by their ID and access their details
+        '''
+        self.new_user.save_user()
+        test_user = Users(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
+        search_user = Users.find_user_by_id(2)
+        self.assertEqual(search_user.username, test_user.username)
 
 
 if __name__ == "__main__":
