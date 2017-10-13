@@ -1,6 +1,7 @@
 class Users:
 
     user_list = []
+    user_accounts = []
     # user_credentials = dict(username,)
 
     def __init__(self, user_id, fullname, username, user_password):
@@ -44,3 +45,15 @@ class Users:
             if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
                 return True
         return False
+
+
+class Accounts:
+    account_list = []
+
+    def __init__(self, acc_id, acc_name, acc_password):
+        '''
+        Initialise Accounts Object
+        '''
+        self.acc_id = acc_id
+        self.acc_name = acc_name
+        self.acc_password = acc_password
