@@ -50,10 +50,11 @@ class Users:
 class Accounts:
     account_list = []
 
-    def __init__(self, acc_id, acc_name, acc_password):
+    def __init__(self, acc_id, acc_name, acc_email, acc_password):
         '''
         Initialise Accounts Object
         '''
         self.acc_id = acc_id
         self.acc_name = acc_name
+        self.acc_email = acc_email
         self.acc_password = acc_password
