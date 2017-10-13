@@ -1,6 +1,7 @@
 class Users:
 
     user_list = []
+    # user_credentials = dict(username,)
 
     def __init__(self, user_id, fullname, username, user_password):
         '''
@@ -10,6 +11,7 @@ class Users:
         self.fullname = fullname
         self.username = username
         self.user_password = user_password
+        # self.user_credentials = dict(self.username=username, self.user_password=user_password)
 
     def save_user(self):
         '''
@@ -34,3 +36,11 @@ class Users:
     @classmethod
     def display_users(cls):
         return cls.user_list
+
+    @classmethod
+    def authenticate_user(cls, user_id, username, user_password):
+        confirm_user_exists = cls.check_user_existence(user_id)
+        for user in cls.user_list:
+            if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
+                return True
+        return False

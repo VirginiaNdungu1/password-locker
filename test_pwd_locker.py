@@ -62,7 +62,20 @@ class TestPwdLocker(unittest.TestCase):
         '''
         test to check if all users in user_list are displayed
         '''
+        self.new_user.save_user()
+        test_user = Users(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
         self.assertEqual(Users.display_users(), Users.user_list)
+
+    def test_check_authenticate_user(self):
+        '''
+        test to authenticate user
+        '''
+        self.new_user.save_user()
+        test_user = Users(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
+        user_authenticated = Users.authenticate_user(1, "nish", 12345)
+        self.assertTrue(user_authenticated)
 
 
 if __name__ == "__main__":
