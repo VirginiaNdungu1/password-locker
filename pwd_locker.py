@@ -23,5 +23,10 @@ class Users:
             if user.user_id == user_id:
                 return user
 
-    # @classmethod
-    # def
+    @classmethod
+    def check_user_existence(cls, user_id):
+        for user in cls.user_list:
+            if user.user_id == user_id:
+                return True
+
+        return False
