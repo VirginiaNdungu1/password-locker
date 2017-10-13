@@ -30,3 +30,7 @@ class Users:
                 return True
 
         return False
+
+    @classmethod
+    def display_users(cls):
+        return cls.user_list
