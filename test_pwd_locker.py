@@ -48,6 +48,16 @@ class TestPwdLocker(unittest.TestCase):
         search_user = Users.find_user_by_id(2)
         self.assertEqual(search_user.username, test_user.username)
 
+    def test_check_user_existence(self):
+        '''
+        test to check if user exists in user_list
+        '''
+        self.new_user.save_user()
+        test_user = Users(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
+        user_exists = Users.check_user_existence(2)
+        self.assertTrue(user_exists)
+
 
 if __name__ == "__main__":
     unittest.main()
