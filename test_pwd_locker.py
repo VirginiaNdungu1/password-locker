@@ -23,6 +23,21 @@ class TestPwdLocker(unittest.TestCase):
         self.new_user.save_user()
         self.assertEqual(len(User.user_list), 1)
 
+    def tearDown(self):
+        '''
+        tearDown cleans up after each test case runs
+        '''
+        User.user_list = []
+
+    def test_save_multiple_users(self):
+        '''
+        test if multiple user objects have been saved in user_list
+        '''
+        self.new_user.save_user()
+        test_user = User(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
+        self.assertEqual(len(User.user_list), 2)
+
 
 if __name__ == "__main__":
     unittest.main()
