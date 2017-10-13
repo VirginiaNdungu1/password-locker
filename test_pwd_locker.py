@@ -58,6 +58,12 @@ class TestPwdLocker(unittest.TestCase):
         user_exists = Users.check_user_existence(2)
         self.assertTrue(user_exists)
 
+    def test_check_display_users(self):
+        '''
+        test to check if all users in user_list are displayed
+        '''
+        self.assertEqual(Users.display_users(), Users.user_list)
+
 
 if __name__ == "__main__":
     unittest.main()
