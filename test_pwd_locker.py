@@ -1,3 +1,5 @@
+import random
+import string
 import unittest
 
 from pwd_locker import Credentials, Users
@@ -58,15 +60,6 @@ class TestPwdUsers(unittest.TestCase):
         user_exists = Users.check_user_existence(2)
         self.assertTrue(user_exists)
 
-    def test_check_display_users(self):
-        '''
-        test to check if all users in user_list are displayed
-        '''
-        self.new_user.save_user()
-        test_user = Users(2, "Mbugua", "gitu", 467587)
-        test_user.save_user()
-        self.assertEqual(Users.display_users(), Users.user_list)
-
     def test_check_authenticate_user(self):
         '''
         test to authenticate user
@@ -77,10 +70,20 @@ class TestPwdUsers(unittest.TestCase):
         user_authenticated = Users.authenticate_user(1, "nish", 12345)
         self.assertTrue(user_authenticated)
 
+    def test_check_display_users(self):
+        '''
+        test to check if all users in user_list are displayed
+        '''
+        self.new_user.save_user()
+        test_user = Users(2, "Mbugua", "gitu", 467587)
+        test_user.save_user()
+        self.assertEqual(Users.display_users(), Users.user_list)
+
 
 class TestPwdCredentials(unittest.TestCase):
 
     def setUp(self):
+        self.new_user = Users(1, "Virginia", "nish", 12345)
         self.new_account = Credentials(
             1, "Github", "ndungu.wairimu22@gmail.com", "VirginiaNdungu1", "xyz123")
 
@@ -94,6 +97,23 @@ class TestPwdCredentials(unittest.TestCase):
                          "ndungu.wairimu22@gmail.com")
         self.assertEqual(self.new_account.acc_username, "VirginiaNdungu1")
         self.assertEqual(self.new_account.acc_password, "xyz123")
+
+    # def test_check_authenticate_user(self):
+    #     '''
+    #     test to authenticate user
+    #     '''
+    #     self.new_user.save_user()
+    #     test_user = Users(2, "Mbugua", "gitu", 467587)
+    #     test_user.save_user()
+    #     user_authenticated = Users.authenticate_user(1, "nish", 12345)
+    #     self.assertTrue(user_authenticated)
+    def test_acc_password(self, size=10, char=string.ascii_lowercase + string.digits):
+        '''
+        Generate a random password
+        '''
+        acc_password = ''.join(random.choice(char) for _ in range(size))
+        return acc_password
+        self.assertEqual(Credentials.acc_password, new_account.acc_password)
 
     def test_save_account(self):
         '''
@@ -117,6 +137,8 @@ class TestPwdCredentials(unittest.TestCase):
             2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
         test_account.save_account()
         self.assertEqual(len(Credentials.account_list), 2)
+
+    # def test_gen_random_pwd
 
     def test_find_account_by_id(self):
         '''

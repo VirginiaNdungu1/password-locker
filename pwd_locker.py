@@ -1,4 +1,6 @@
-# User_account = Users
+import random
+import string
+
 global user_list
 
 
@@ -38,10 +40,6 @@ class Users:
         return False
 
     @classmethod
-    def display_users(cls):
-        return cls.user_list
-
-    @classmethod
     def authenticate_user(cls, user_id, username, user_password):
         confirm_user_exists = cls.check_user_existence(user_id)
         for user in cls.user_list:
@@ -49,8 +47,13 @@ class Users:
                 return True
         return False
 
+    @classmethod
+    def display_users(cls):
+        return cls.user_list
+
 
 class Credentials:
+    global user_list
     account_list = []
 
     def __init__(self, acc_id, acc_name, acc_email, acc_username, acc_password):
@@ -62,6 +65,21 @@ class Credentials:
         self.acc_email = acc_email
         self.acc_username = acc_username
         self.acc_password = acc_password
+
+    # # @classmethod
+    # def authenticate_user(self, user_id, username, user_password):
+    #     confirm_user_exists = Users.check_user_existence(user_id)
+    #     for user in Users.user_list:
+    #         if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
+    #             return True
+    #     return False
+
+    def acc_password(self, size=10, char=string.ascii_lowercase + string.digits):
+        '''
+        Generate a random password
+        '''
+        acc_password = ''.join(random.choice(char) for _ in range(size))
+        return self.acc_password
 
     def save_account(self):
         '''
