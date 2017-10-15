@@ -74,3 +74,11 @@ class Credentials:
         for account in cls.account_list:
             if account.acc_id == acc_id:
                 return account
+
+    @classmethod
+    def check_account_existence(cls, acc_id):
+        for account in cls.account_list:
+            if account.acc_id == acc_id:
+                return True
+
+        return False
