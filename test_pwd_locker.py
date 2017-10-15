@@ -6,20 +6,8 @@ from pwd_locker import Credentials, Users
 class TestPwdLocker(unittest.TestCase):
     def setUp(self):
         self.new_user = Users(1, "Virginia", "nish", 12345)
-
-    def setUp(self):
-        self.new_account = Credentials(1, "Github", "ndungu.wairimu22@gmail.com", "VirginiaNdungu1". "xyz123")
-
-    def test_init(self):
-        '''
-        test if Credentials Object has been properly initialised
-        '''
-        self.assertEqual(self.new_account.acc_id, 1)
-        self.assertEqual(self.new_account.acc_name, Github)
-        self.assertEqual(self.new_account.acc_email,
-                         "ndungu.wairimu22@gmail.com")
-        self.assertEqual(self.new_account.acc_username, "VirginiaNdungu1")
-        self.assertEqual(self.new_account.acc_password, "xyz123")
+        self.new_account = Credentials(
+            1, "Github", "ndungu.wairimu22@gmail.com", "VirginiaNdungu1", "xyz123")
 
     def test_init(self):
         '''
@@ -29,6 +17,15 @@ class TestPwdLocker(unittest.TestCase):
         self.assertEqual(self.new_user.fullname, "Virginia")
         self.assertEqual(self.new_user.username, "nish")
         self.assertEqual(self.new_user.user_password, 12345)
+        '''
+        test if Credentials Object has been properly initialised
+        '''
+        self.assertEqual(self.new_account.acc_id, 1)
+        self.assertEqual(self.new_account.acc_name, "Github")
+        self.assertEqual(self.new_account.acc_email,
+                         "ndungu.wairimu22@gmail.com")
+        self.assertEqual(self.new_account.acc_username, "VirginiaNdungu1")
+        self.assertEqual(self.new_account.acc_password, "xyz123")
 
     def test_save_user(self):
         '''
