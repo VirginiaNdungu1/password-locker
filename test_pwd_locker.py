@@ -106,6 +106,17 @@ class TestPwdLocker(unittest.TestCase):
         test_account.save_account()
         self.assertEqual(len(Credentials.account_list), 2)
 
+    def test_find_account_by_id(self):
+        '''
+        test to ensure we can find a credential by their ID and access their details
+        '''
+        self.new_account.save_account()
+        test_account = Credentials(
+            2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
+        test_account.save_account()
+        search_account = Credentials.find_account_by_id(2)
+        self.assertEqual(search_account.acc_name, test_user.acc_name)
+
 
 if __name__ == "__main__":
     unittest.main()
