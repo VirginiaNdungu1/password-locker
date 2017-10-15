@@ -129,6 +129,17 @@ class TestPwdCredentials(unittest.TestCase):
         search_account = Credentials.find_account_by_id(2)
         self.assertEqual(search_account.acc_name, test_account.acc_name)
 
+    def test_check_account_existence(self):
+        '''
+        test to check if credential exists in account_list
+        '''
+        self.new_account.save_account()
+        test_account = Credentials(
+            2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
+        test_account.save_account()
+        account_exists = Credentials.check_account_existence(2)
+        self.assertTrue(account_exists)
+
 
 if __name__ == "__main__":
     unittest.main()

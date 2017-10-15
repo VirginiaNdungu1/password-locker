@@ -1,3 +1,7 @@
+# User_account = Users
+global user_list
+
+
 class Users:
 
     user_list = []
