@@ -39,6 +39,7 @@ class TestPwdLocker(unittest.TestCase):
         tearDown cleans up after each test case runs
         '''
         Users.user_list = []
+        Credentials.account_list = []
 
     def test_save_multiple_users(self):
         '''
@@ -94,6 +95,16 @@ class TestPwdLocker(unittest.TestCase):
         '''
         self.new_account.save_account()
         self.assertEqual(len(Credentials.account_list), 1)
+
+    def test_save_multiple_accounts(self):
+        '''
+        test if multiple Credentials objects have been saved in account_list
+        '''
+        self.new_account.save_account()
+        test_account = Credentials(
+            2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
+        test_account.save_account()
+        self.assertEqual(len(Credentials.account_list), 2)
 
 
 if __name__ == "__main__":
