@@ -88,6 +88,13 @@ class TestPwdLocker(unittest.TestCase):
         user_authenticated = Users.authenticate_user(1, "nish", 12345)
         self.assertTrue(user_authenticated)
 
+    def test_save_account(self):
+        '''
+        test if account is saved to account_list
+        '''
+        self.new_account.save_account()
+        self.assertEqual(len(Credentials.account_list), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
