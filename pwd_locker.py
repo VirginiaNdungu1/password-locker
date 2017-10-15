@@ -58,3 +58,9 @@ class Credentials:
         self.acc_email = acc_email
         self.acc_username = acc_username
         self.acc_password = acc_password
+
+    def save_account(self):
+        '''
+        Create and save account in account_list
+        '''
+        Credentials.account_list.append(self)
