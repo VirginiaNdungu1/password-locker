@@ -3,11 +3,9 @@ import unittest
 from pwd_locker import Credentials, Users
 
 
-class TestPwdLocker(unittest.TestCase):
+class TestPwdUsers(unittest.TestCase):
     def setUp(self):
         self.new_user = Users(1, "Virginia", "nish", 12345)
-        self.new_account = Credentials(
-            1, "Github", "ndungu.wairimu22@gmail.com", "VirginiaNdungu1", "xyz123")
 
     def test_init(self):
         '''
@@ -17,15 +15,6 @@ class TestPwdLocker(unittest.TestCase):
         self.assertEqual(self.new_user.fullname, "Virginia")
         self.assertEqual(self.new_user.username, "nish")
         self.assertEqual(self.new_user.user_password, 12345)
-        '''
-        test if Credentials Object has been properly initialised
-        '''
-        self.assertEqual(self.new_account.acc_id, 1)
-        self.assertEqual(self.new_account.acc_name, "Github")
-        self.assertEqual(self.new_account.acc_email,
-                         "ndungu.wairimu22@gmail.com")
-        self.assertEqual(self.new_account.acc_username, "VirginiaNdungu1")
-        self.assertEqual(self.new_account.acc_password, "xyz123")
 
     def test_save_user(self):
         '''
@@ -39,7 +28,6 @@ class TestPwdLocker(unittest.TestCase):
         tearDown cleans up after each test case runs
         '''
         Users.user_list = []
-        Credentials.account_list = []
 
     def test_save_multiple_users(self):
         '''
@@ -89,12 +77,36 @@ class TestPwdLocker(unittest.TestCase):
         user_authenticated = Users.authenticate_user(1, "nish", 12345)
         self.assertTrue(user_authenticated)
 
+
+class TestPwdCredentials(unittest.TestCase):
+
+    def setUp(self):
+        self.new_account = Credentials(
+            1, "Github", "ndungu.wairimu22@gmail.com", "VirginiaNdungu1", "xyz123")
+
+    def test_init(self):
+        '''
+        test if Credentials Object has been properly initialised
+        '''
+        self.assertEqual(self.new_account.acc_id, 1)
+        self.assertEqual(self.new_account.acc_name, "Github")
+        self.assertEqual(self.new_account.acc_email,
+                         "ndungu.wairimu22@gmail.com")
+        self.assertEqual(self.new_account.acc_username, "VirginiaNdungu1")
+        self.assertEqual(self.new_account.acc_password, "xyz123")
+
     def test_save_account(self):
         '''
         test if account is saved to account_list
         '''
         self.new_account.save_account()
         self.assertEqual(len(Credentials.account_list), 1)
+
+    def tearDown(self):
+        '''
+        tearDown cleans up after each test case runs
+        '''
+        Credentials.account_list = []
 
     def test_save_multiple_accounts(self):
         '''
@@ -115,7 +127,7 @@ class TestPwdLocker(unittest.TestCase):
             2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
         test_account.save_account()
         search_account = Credentials.find_account_by_id(2)
-        self.assertEqual(search_account.acc_name, test_user.acc_name)
+        self.assertEqual(search_account.acc_name, test_account.acc_name)
 
 
 if __name__ == "__main__":

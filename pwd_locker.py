@@ -64,3 +64,9 @@ class Credentials:
         Create and save account in account_list
         '''
         Credentials.account_list.append(self)
+
+    @classmethod
+    def find_account_by_id(cls, acc_id):
+        for account in cls.account_list:
+            if account.acc_id == acc_id:
+                return account
