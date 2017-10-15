@@ -12,7 +12,7 @@ class Users:
         self.fullname = fullname
         self.username = username
         self.user_password = user_password
-        # self.user_credentials = dict(self.username=username, self.user_password=user_password)
+        self.user_password = user_password)
 
     def save_user(self):
         '''
@@ -40,21 +40,22 @@ class Users:
 
     @classmethod
     def authenticate_user(cls, user_id, username, user_password):
-        confirm_user_exists = cls.check_user_existence(user_id)
+        confirm_user_exists=cls.check_user_existence(user_id)
         for user in cls.user_list:
             if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
                 return True
         return False
 
 
-class Accounts:
-    account_list = []
+class Credentials:
+    account_list=[]
 
-    def __init__(self, acc_id, acc_name, acc_email, acc_password):
+    def __init__(self, acc_id, acc_name, acc_email, acc_username, acc_password):
         '''
         Initialise Accounts Object
         '''
-        self.acc_id = acc_id
-        self.acc_name = acc_name
-        self.acc_email = acc_email
-        self.acc_password = acc_password
+        self.acc_id=acc_id
+        self.acc_name=acc_name
+        self.acc_email=acc_email
+        self.acc_username=acc_username
+        self.acc_password=acc_password
