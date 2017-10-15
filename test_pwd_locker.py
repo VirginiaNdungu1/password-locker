@@ -148,7 +148,7 @@ class TestPwdCredentials(unittest.TestCase):
         test_account = Credentials(
             2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
         test_account.save_account()
-        search_account = Credentials.find_account_by_id(2)
+        search_account = Credentials.find_account("Slack")
         self.assertEqual(search_account.acc_name, test_account.acc_name)
 
     def test_check_account_existence(self):
@@ -159,7 +159,7 @@ class TestPwdCredentials(unittest.TestCase):
         test_account = Credentials(
             2, "Slack", "ndungu.wairimu22@gmail.com", "monster", "467K587")
         test_account.save_account()
-        account_exists = Credentials.check_account_existence(2)
+        account_exists = Credentials.check_account_existence("Slack")
         self.assertTrue(account_exists)
 
     def test_display_accounts(self):

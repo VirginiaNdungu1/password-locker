@@ -43,7 +43,7 @@ class Users:
     def authenticate_user(cls, user_id, username, user_password):
         confirm_user_exists = cls.check_user_existence(user_id)
         for user in cls.user_list:
-            if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
+            if confirm_user_exists == True and (user.user_id == user_id and user.username == username and user.user_password == user_password):
                 return True
         return False
 
@@ -66,13 +66,13 @@ class Credentials:
         self.acc_username = acc_username
         self.acc_password = acc_password
 
-    # # @classmethod
-    # def authenticate_user(self, user_id, username, user_password):
-    #     confirm_user_exists = Users.check_user_existence(user_id)
-    #     for user in Users.user_list:
-    #         if confirm_user_exists == True and (user.username == username and user.user_password == user_password):
-    #             return True
-    #     return False
+    # @classmethod
+    def authenticate_user(self, user_id, username, user_password):
+        confirm_user_exists = Users.check_user_existence(user_id)
+        for user in Users.user_list:
+            if confirm_user_exists == True and (user.user_id == user_id and user.username == username and user.user_password == user_password):
+                return True
+        return False
 
     def acc_password(self, size=10, char=string.ascii_lowercase + string.digits):
         '''
@@ -88,19 +88,24 @@ class Credentials:
         Credentials.account_list.append(self)
 
     @classmethod
-    def find_account_by_id(cls, acc_id):
+    def find_account(cls, acc_name):
         for account in cls.account_list:
-            if account.acc_id == acc_id:
+            if account.acc_name == acc_name:
                 return account
 
     @classmethod
-    def check_account_existence(cls, acc_id):
+    def check_account_existence(cls, acc_name):
         for account in cls.account_list:
-            if account.acc_id == acc_id:
+            if account.acc_name == acc_name:
                 return True
 
         return False
 
     @classmethod
     def display_accounts(cls):
+        # confirm_user_account = Credentials.authenticate_user(
+        #     user_id, username, user_password)
+        # for account in Credentials.account_list:
+        #     if Users.user_id == Credentials.acc_id:
+        #         return True
         return cls.account_list
