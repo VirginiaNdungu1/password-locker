@@ -74,7 +74,7 @@ class Credentials:
                 return True
         return False
 
-    def acc_password(self, size=10, char=string.ascii_lowercase + string.digits):
+    def gen_random_password(self, size=10, char=string.ascii_lowercase + string.digits):
         '''
         Generate a random password
         '''
