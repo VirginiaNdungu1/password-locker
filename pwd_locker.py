@@ -74,12 +74,13 @@ class Credentials:
                 return True
         return False
 
-    def gen_random_password(self, size=10, char=string.ascii_lowercase + string.digits):
+    # @classmethod
+    def gen_random_password(size=10, char=string.ascii_lowercase + string.digits):
         '''
         Generate a random password
         '''
         acc_password = ''.join(random.choice(char) for _ in range(size))
-        return self.acc_password
+        return acc_password
 
     def save_account(self):
         '''

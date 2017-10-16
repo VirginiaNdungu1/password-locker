@@ -122,18 +122,24 @@ def main():
 
             print("Enter Account Password")
             print(
-                "Choose to enter existing password or Generate a random password - genpwd")
-            acc_pwd = input()
+                "Choose to enter existing password = existingpwd or Generate a random password - genpwd")
+            acc_pwd = input().lower()
             while True:
-                if acc_pwd == genpwd:
+                if acc_pwd == "genpwd":
                     acc_password = gen_random_pwd()
+                    break
+                elif acc_pwd == "existingpwd":
+                    acc_password = input("Enter existing password")
+                    break
+                else:
+                    print("Error creating credential.....")
 
             # create and save new employee
             save_credentials(create_credentials(
                 acc_id, acc_name, acc_email, acc_username, acc_password))
             print('\n')
             print(
-                f"New Pwd Locker Account of {acc_id}, account_name {acc_name} created for {username} ")
+                f"New Pwd Locker Account of {acc_id}, account_name {acc_name} {acc_password} created for {username} ")
             print('\n')
 
 
