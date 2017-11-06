@@ -93,7 +93,7 @@ def main():
                 print("Pwd Locker User Accounts")
                 print('\n')
 
-                for user in display_users():
+                for user in display_all_users():
                     print(
                         f"{user.user_id}{user.fullname}{user.username}{user.user_password}")
                     print('\n')
